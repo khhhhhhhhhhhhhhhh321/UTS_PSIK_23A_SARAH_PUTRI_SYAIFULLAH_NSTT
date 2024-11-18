@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Navigation</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+    }
+
+    .navbar {
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      padding: 15px 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-links {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+    }
+
+    .nav-links li {
+      margin: 0 15px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      padding: 8px 15px;
+      border-radius: 20px;
+      transition: background 0.3s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .content {
+      margin-top: 80px;
+      padding: 20px;
+    }
+
+    .section {
+      display: none;
+      padding: 20px;
+      min-height: calc(100vh - 100px);
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .section.active {
+      display: block;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #333;
+      text-align: center;
+      font-size: 2em;
+    }
+
+    .section p {
+      line-height: 1.6;
+      color: #666;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        flex-wrap: wrap;
+      }
+
+      .nav-links li {
+        margin: 5px;
+      }
+
+      .section {
+        margin: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar">
+    <ul class="nav-links">
+      <li><a href="#home" class="active">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="content">
+    <section id="home" class="section active">
+      <h2>Welcome to My Portfolio</h2>
+      <p>This is the home section. Here you can introduce yourself and provide a brief overview of your portfolio.</p>
+    </section>
+
+    <section id="about" class="section">
+      <h2>About Me</h2>
+      <p>Share your background, interests, and what drives you in your professional journey.</p>
+    </section>
+
+    <section id="skills" class="section">
+      <h2>My Skills</h2>
+      <p>List your technical skills, soft skills, and areas of expertise.</p>
+    </section>
+
+    <section id="education" class="section">
+      <h2>Education</h2>
+      <p>Detail your educational background, certifications, and relevant coursework.</p>
+    </section>
+
+    <section id="experience" class="section">
+      <h2>Experience</h2>
+      <p>Highlight your work experience, internships, and professional achievements.</p>
+    </section>
+
+    <section id="work" class="section">
+      <h2>My Work</h2>
+      <p>Showcase your projects, portfolio pieces, and professional accomplishments.</p>
+    </section>
+
+    <section id="blog" class="section">
+      <h2>Blog</h2>
+      <p>Share your thoughts, insights, and articles about your field of expertise.</p>
+    </section>
+
+    <section id="contact" class="section">
+      <h2>Contact Me</h2>
+      <p>Provide your contact information and ways to connect with you professionally.</p>
+    </section>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const navLinks = document.querySelectorAll('.nav-links a');
+      const sections = document.querySelectorAll('.section');
+
+      navLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+
+          // Remove active class from all links and sections
+          navLinks.forEach(link => link.classList.remove('active'));
+          sections.forEach(section => section.classList.remove('active'));
+
+          // Add active class to clicked link and corresponding section
+          this.classList.add('active');
+          const targetId = this.getAttribute('href').substring(1);
+          document.getElementById(targetId).classList.add('active');
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>
